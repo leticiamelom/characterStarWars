@@ -1,6 +1,11 @@
-const knex = require('knex');
-const configuration = require('../../knexfile');
+import mysql from "mysql";
+import dotenv from "dotenv";
 
-const connection = knex(configuration.development);
+dotenv.config();
 
-module.exports = connection;
+const connection = mysql.createPool({
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB,
+    host: process.env.HOST,
+});
