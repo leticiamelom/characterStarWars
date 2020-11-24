@@ -10,7 +10,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Profile} />
-        <Route path="/character/new" component={NewCharacter} />
+        <Route path="/characters/new" component={NewCharacter} />
       </Switch>
     </BrowserRouter>
   );

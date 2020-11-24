@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
 
-import api from '../../services/api';
+import api from "../../services/api";
 
-import './styles.css';
+import "./styles.css";
 
-import logoImg from '../../assets/Star_Wars.png';
+import logoImg from "../../assets/Star_Wars.png";
 
 export default function NewCharacter() {
   const [title, setTitle] = useState();
@@ -15,7 +15,7 @@ export default function NewCharacter() {
 
   const history = useHistory();
 
-  const ongId = localStorage.getItem('ongId');
+  const ongId = localStorage.getItem("ongId");
 
   async function handleNewCharacter(e) {
     e.preventDefault();
@@ -27,15 +27,15 @@ export default function NewCharacter() {
     };
 
     try {
-      await api.post('characters', data, {
+      await api.post("characters", data, {
         headers: {
           Authorization: ongId,
-        }
-      })
-      
-      history.push('/profile');
+        },
+      });
+
+      history.push("/profile");
     } catch (err) {
-      alert('Erro ao cadastrar personagem, tente novamente.');
+      alert("Erro ao cadastrar personagem, tente novamente.");
     }
   }
 
@@ -46,27 +46,26 @@ export default function NewCharacter() {
           <img src={logoImg} alt="Be The Hero" />
 
           <h1>Cadastrar novo personagem</h1>
-          <p>Descreva o personagem detalhadamente para compor o elenco da saga.</p>
-
-          <Link className="back-link" to="/profile">
-            <FiArrowLeft size={16} color="#E02041" />
-            Voltar para home
-          </Link>
+          <p>
+            Descreva o personagem detalhadamente para compor o elenco da saga.
+          </p>
         </section>
 
         <form onSubmit={handleNewCharacter}>
           <input
             placeholder="Personagem"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
             placeholder="Descrição"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
 
-          <button className="button" type="submit">Cadastrar</button>
+          <button className="button" type="submit">
+            Cadastrar
+          </button>
         </form>
       </div>
     </div>

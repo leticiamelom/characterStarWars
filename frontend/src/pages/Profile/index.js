@@ -7,6 +7,8 @@ import api from '../../services/api';
 import './styles.css';
 
 import logoImg from '../../assets/Star_Wars.png';
+import elencoImg from '../../assets/elenco2.png';
+
 
 export default function Profile() {
   const [characters, setCharacters] = useState([]);
@@ -17,7 +19,7 @@ export default function Profile() {
   const ongName = localStorage.getItem('ongName');
 
   useEffect(() => {
-    api.get('profile', {
+    api.get('/', {
       headers: {
         Authorization: ongId,
       }
@@ -50,12 +52,9 @@ export default function Profile() {
     <div className="profile-container">
       <header>
         <img src={logoImg} alt="Star Wars" />
-        <span>Bem vindo, {ongName}.</span>
 
         <Link className="button" to="/characters/new">Cadastrar novo personagem</Link>
-        <button onClick={handleLogout} type="button">
-          <FiPower size={18} color="#E02041" />
-        </button>
+        
       </header>
 
       <h1>Personagens Cadastrados</h1>
@@ -69,12 +68,12 @@ export default function Profile() {
             <strong>DESCRIÇÃO:</strong>
             <p>{character.description}</p>
 
-            <button onClick={() => handleDeleteCharacter(character.id)} type="button">
-              <FiTrash2 size={20} color="#a8a8b3" />
-            </button>
           </li>
         ))}
       </ul>
+
+      <img src={elencoImg} alt="Elenco" />
+
     </div>
   );
 }
