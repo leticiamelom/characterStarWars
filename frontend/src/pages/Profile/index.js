@@ -57,7 +57,7 @@ export default function Profile() {
         
       </header>
 
-      <h1>Personagens Cadastrados</h1>
+      <h1>Faça parte do universo Star Wars</h1>
 
       <ul>
         {characters.map(character => (
