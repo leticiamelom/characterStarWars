@@ -8,7 +8,7 @@ import './styles.css';
 
 import logoImg from '../../assets/Star_Wars.png';
 
-export default function NewIncident() {
+export default function NewCharacter() {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [value, setValue] = useState();
@@ -17,7 +17,7 @@ export default function NewIncident() {
 
   const ongId = localStorage.getItem('ongId');
 
-  async function handleNewIncident(e) {
+  async function handleNewCharacter(e) {
     e.preventDefault();
 
     const data = {
@@ -27,7 +27,7 @@ export default function NewIncident() {
     };
 
     try {
-      await api.post('incidents', data, {
+      await api.post('characters', data, {
         headers: {
           Authorization: ongId,
         }
@@ -40,7 +40,7 @@ export default function NewIncident() {
   }
 
   return (
-    <div className="new-incident-container">
+    <div className="new-character-container">
       <div className="content">
         <section>
           <img src={logoImg} alt="Be The Hero" />
@@ -54,7 +54,7 @@ export default function NewIncident() {
           </Link>
         </section>
 
-        <form onSubmit={handleNewIncident}>
+        <form onSubmit={handleNewCharacter}>
           <input
             placeholder="Personagem"
             value={title}

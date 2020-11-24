@@ -9,7 +9,7 @@ import './styles.css';
 import logoImg from '../../assets/Star_Wars.png';
 
 export default function Profile() {
-  const [incidents, setIncidents] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
   const history = useHistory();
 
@@ -22,19 +22,19 @@ export default function Profile() {
         Authorization: ongId,
       }
     }).then(response => {
-      setIncidents(response.data);
+      setCharacters(response.data);
     })
   }, [ongId]);
 
-  async function handleDeleteIncident(id) {
+  async function handleDeleteCharacter(id) {
     try {
-      await api.delete(`incidents/${id}`, {
+      await api.delete(`characters/${id}`, {
         headers: {
           Authorization: ongId,
         }
       });
 
-      setIncidents(incidents.filter(incident => incident.id !== id));
+      setCharacters(characters.filter(character => character.id !== id));
     } catch (err) {
       alert('Erro ao deletar personagem, tente novamente');
     }
@@ -52,7 +52,7 @@ export default function Profile() {
         <img src={logoImg} alt="Star Wars" />
         <span>Bem vindo, {ongName}.</span>
 
-        <Link className="button" to="/incidents/new">Cadastrar novo personagem</Link>
+        <Link className="button" to="/characters/new">Cadastrar novo personagem</Link>
         <button onClick={handleLogout} type="button">
           <FiPower size={18} color="#E02041" />
         </button>
@@ -61,15 +61,15 @@ export default function Profile() {
       <h1>Personagens Cadastrados</h1>
 
       <ul>
-        {incidents.map(incident => (
-          <li key={incident.id}>
+        {characters.map(character => (
+          <li key={character.id}>
             <strong>PERSONAGEM:</strong>
-            <p>{incident.title}</p>
+            <p>{character.title}</p>
 
             <strong>DESCRIÇÃO:</strong>
-            <p>{incident.description}</p>
+            <p>{character.description}</p>
 
-            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
+            <button onClick={() => handleDeleteCharacter(character.id)} type="button">
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>
           </li>
